@@ -6,6 +6,13 @@ exports.signup = function(req, res, next) {
     const email = req.body.email;
     const password = req.body.password;
 
+    if(!email || !password) {
+        // TODO add in email validation
+        return res.status(422).send({
+            error: 'Please enter an email address and password'
+        });
+    }
+
     // Check if user email already exits
     User.findOne({ email: email }, function(err, existingUser) {
         // Check for db connection error etc.
@@ -29,7 +36,9 @@ exports.signup = function(req, res, next) {
                 return next(err);
             }
             // Respond to request indicating user created
-            res.json(user);
+            res.json({
+                success: true
+            });
         });
 
     });
