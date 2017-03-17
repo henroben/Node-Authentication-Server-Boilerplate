@@ -12,6 +12,14 @@ function tokenForUser(user) {
     }, config.secret);
 };
 
+exports.signin = function(req, res, next) {
+    // User has already had their email and password authorised
+    // Need to supply token
+    res.send({
+        token: tokenForUser(req.user)
+    });
+};
+
 exports.signup = function(req, res, next) {
 
     // get email
