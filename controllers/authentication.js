@@ -42,7 +42,7 @@ exports.signup = function(req, res, next) {
 
         // If user does exist, return error
         if(existingUser) {
-            return res.status(422).send({ error: 'Email is already registered'});
+            return res.status(422).send({ error: 'Email is already registered' });
         }
 
         // If user does not exist, create user record
